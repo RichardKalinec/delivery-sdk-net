@@ -23,14 +23,12 @@ namespace KenticoCloud.Delivery.Tests
             var deliveryOptions = new OptionsWrapper<DeliveryOptions>(new DeliveryOptions { ProjectId = Guid.NewGuid().ToString() });
             var client = new DeliveryClient(
                 deliveryOptions,
+                httpClient,
                 contentLinkUrlResolver,
                 null,
                 codeFirstModelProvider,
                 resiliencePolicyProvider
-            )
-            {
-                HttpClient = httpClient,
-            };
+            );
 
             // Act
             var contentItem = await client.GetItemAsync("test");
